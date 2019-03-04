@@ -13,9 +13,11 @@ Have you ever been in a meeting or presentation, trying to show work or a deck o
 
 ![How spf works](https://github.com/tannerc/spf/blob/master/resources/spf-demo.gif)
 
-Just build the app in Xcode (or get the pre-compiled app right here: [Compiled app](https://github.com/tannerc/spf/blob/master/compiled/Spf.zip)) and open to run as you would any other app. You'll see a new menu icon in your status bar which then allows you to select one of several options for polarizing the currently active screen.
+Just build the app in Xcode and open to run as you would any other app. You'll see a new menu icon in your status bar which then allows you to select one of several options for polarizing the currently active screen.
 
 Once a polarizing filter has been applied, you can clear it using the same status bar menu.
+
+## Or download the pre-compiled app right here: [Compiled app](https://github.com/tannerc/spf/blob/master/compiled/Spf.zip)
 
 ## Why Spf?
 
