@@ -17,7 +17,7 @@ Just build the app in Xcode and open to run as you would any other app. You'll s
 
 Once a polarizing filter has been applied, you can clear it using the same status bar menu.
 
-## Or download the pre-compiled app right here: [Compiled app](https://github.com/tannerc/spf/blob/master/compiled/Spf.zip)
+## Or download the pre-compiled app right here: [Compiled app](https://github.com/tannerc/spf/releases/download/1.0/Spf.app.zip)
 
 ## Why Spf?
 
