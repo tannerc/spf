@@ -1,6 +1,8 @@
 # Spf
 A simple, open source Mac OS app for presentations on low-contrast monitors.
 
+![On/off again](https://github.com/tannerc/spf/blob/master/resources/spf-on-off.png)
+
 ## Screen polarization function (Spf)
 
 Spf is an easy-to-use, open source app written in Swift to add a semi-opaque layer over your screen in order to better show low contrast colors in your designs or presentations.
@@ -8,6 +10,8 @@ Spf is an easy-to-use, open source app written in Swift to add a semi-opaque lay
 Have you ever been in a meeting or presentation, trying to show work or a deck on a screen that just isn't calibrated well for showing low contrast details? Hairline grays not showing up in critique? Lightweight icons practically invisible in your presentation? Is the background wash of your design not stark enough to show card containers? Spf can help!
 
 ## How to use it
+
+![How spf works](https://github.com/tannerc/spf/blob/master/resources/spf-demo.gif)
 
 Just build the app in Xcode (or get the pre-compiled app right here: [Compiled app]()) and open to run as you would any other app. You'll see a new menu icon in your status bar which then allows you to select one of several options for polarizing the currently active screen.
 
