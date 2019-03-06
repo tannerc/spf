@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
+            <connections>
+                <outlet property="delegate" destination="Voe-Tx-rLC" id="GzC-gU-4Uq"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Spf" customModuleProvider="target"/>
+        <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
+        <customObject id="l7L-FZ-3TZ" customClass="SpfMenuController" customModule="Spf" customModuleProvider="target">
+            <connections>
+                <outlet property="clearMenuItem" destination="mXr-Ps-Kl5" id="IPU-fg-prT"/>
+                <outlet property="spfMenu" destination="rTt-H4-6Bj" id="cH7-41-NlV"/>
+            </connections>
+        </customObject>
+        <menu autoenablesItems="NO" id="rTt-H4-6Bj">
+            <items>
+                <menuItem title="5% opacity" tag="5" id="eHo-mj-JGW">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="setOverlayWithSender:" target="l7L-FZ-3TZ" id="YZZ-lB-jw0"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="10% opacity" tag="10" id="T2w-ig-Syf">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="setOverlayWithSender:" target="l7L-FZ-3TZ" id="UKb-E3-AUQ"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="25% opacity" tag="25" id="sFe-Iy-4cK">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="setOverlayWithSender:" target="l7L-FZ-3TZ" id="aGf-k9-ODh"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="50% opacity" tag="50" id="kwA-RC-aYn">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="setOverlayWithSender:" target="l7L-FZ-3TZ" id="nuX-nV-R2s"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Clear" enabled="NO" id="mXr-Ps-Kl5">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="removeOverlayWithSender:" target="l7L-FZ-3TZ" id="z17-Tn-OKJ"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="U0J-5Q-47X"/>
+                <menuItem title="Run test" id="oie-Xf-nCt">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="setOverlayWithSender:" target="l7L-FZ-3TZ" id="l0v-Gw-wNU"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="About" id="PfI-4j-YdZ">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="goToAboutWithSender:" target="l7L-FZ-3TZ" id="GPd-9Y-WSf"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Quit" id="zYj-4P-Rqu">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="quitClickedWithSender:" target="l7L-FZ-3TZ" id="gXt-y5-0hv"/>
+                    </connections>
+                </menuItem>
+            </items>
+            <point key="canvasLocation" x="30.5" y="152"/>
+        </menu>
+    </objects>
+</document>
