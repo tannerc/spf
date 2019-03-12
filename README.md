@@ -1,4 +1,4 @@
-# Spf
+# Spf 1.1
 A simple, open source Mac OS app for presentating on monitors or projectors that blowout highlights and details.
 
 ![On/off again](https://github.com/tannerc/spf/blob/master/resources/spf-on-off.png)
