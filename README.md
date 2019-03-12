@@ -23,7 +23,7 @@ Once a polarizing filter has been applied, you can clear it using the same statu
 
 While working at Facebook we had a little tool known as Preso Saver (code-name "Banana") created by my former mentor and co-founder of software company Sofa, Dirk Stoop. Once I left Facebook I found myself in meetings or presentations where the screens being presented on simply weren't calibrated or capable of showing off the fine details of my work.
 
-Light grays or hairlines in designs were too washed-out and therefore invisible on the screen. Highlights of elements—such as composed glare or highlight states for interactive elements—were practically invisible. To help solve my problem, I re-created the Preso Saver tool from Facebook days using Swift. The tool is lightweigt and remarkably simple, so much so that it only made sense to open source so others can use it and customize to better meet their needs.
+Light grays or hairlines in designs were too washed-out and therefore invisible on the screen. Highlights of elements—such as composed glare or highlight states for interactive elements—were practically invisible. To help solve my problem, I re-created the Preso Saver tool from Facebook days using Swift. The tool is lightweight and remarkably simple, so much so that it only made sense to open source so others can use it and customize to better meet their needs.
 
 Spf comes from the title "Screen polarization function", as the original concept for this tool was "Polarizer" but I wanted something a bit quirkier, Spf (pronouned "sp-iff" was the result).
 
