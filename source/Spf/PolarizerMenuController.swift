@@ -11,9 +11,9 @@ import Cocoa
 class SpfMenuController: NSObject {
     @IBOutlet weak var spfMenu: NSMenu!
     @IBOutlet weak var clearMenuItem: NSMenuItem!
-    var overlayWindow: NSWindow!
+    var overlays: Array<NSWindow> = []
     let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
-    var isWindowVisible = false
+    var areOverlaysVisible = false
     
     override func awakeFromNib() {
         
@@ -31,36 +31,25 @@ class SpfMenuController: NSObject {
                                                object: NSApplication.shared,
                                                queue: OperationQueue.main) {
                                                                     notification -> Void in
-                                                if(self.isWindowVisible){
+                                                if(self.areOverlaysVisible){
                                                     let hugeRect = NSMakeRect(0, 0, 20000, 20000)
-                                                    self.overlayWindow.setFrame(hugeRect, display: true, animate: false)
+                                                    for overlay in self.overlays {
+                                                        overlay.setFrame(hugeRect, display: true, animate: false)
+                                                    }
                                                 }
-        }
-    }
-    
-    @IBAction func quitClicked(sender: NSMenuItem) {
-        
-        // Quit via status bar menu
-        
-        NSApplication.shared.terminate(self)
-    }
-    
-    @IBAction func goToAbout(sender: NSMenuItem) {
-        
-        // About item selected, go to URL in user defined web browser
-        
-        if(sender.title == "About") {
-            if let url = URL(string: "https://github.com/tannerc/spf"), NSWorkspace.shared.open(url) {}
         }
     }
     
     @IBAction func removeOverlay(sender: NSMenuItem) {
         
-        // Check if the overlay is visible and if so, remove it
+        // Check if an overlay is visible and if so, remove it
         
-        if(isWindowVisible){
-            isWindowVisible = false
-            overlayWindow.close()
+        if(areOverlaysVisible){
+            for overlay in self.overlays {
+                overlay.close()
+            }
+            overlays.removeAll()
+            areOverlaysVisible = false
             clearMenuItem.isEnabled = false
             let icon = NSImage(named: "polar-icon")
             statusItem.button?.image = icon
@@ -73,50 +62,76 @@ class SpfMenuController: NSObject {
         
         let overlayValue = Float(sender.tag)
         
-        // Check if window is active, if it is not, initialize it with a huge rect, if it is visible just reset the frame
-        
-        let screenRect = NSScreen.main?.frame
-        
-        if((overlayWindow) == nil){
-            overlayWindow = NSWindow.init(contentRect: screenRect!, styleMask: .fullScreen, backing: NSWindow.BackingStoreType(rawValue: 2)!, defer: false, screen: NSScreen.main)
+        if(areOverlaysVisible) {
+            
+            // Overlays exist, just update them with the new settings (and, if appropriate, screen size)
+            
+            for overlay in overlays {
+                overlay.setFrame(overlay.frame, display: true, animate: false)
+                overlay.alphaValue = 1
+                overlay.makeKeyAndOrderFront(Any?.self)
+                clearMenuItem.isEnabled = true
+                overlay.backgroundColor = NSColor.init(red: 0, green: 0, blue: 0, alpha: CGFloat(overlayValue*0.01))
+            }
         } else {
-            overlayWindow.setFrame(screenRect!, display: true, animate: false)
+            
+            // No overlays have been created yet, so let's make some
+            
+            for screen in NSScreen.screens {
+                let screenRect = screen.frame
+                let newOverlay = NSWindow.init(contentRect: screenRect, styleMask: .fullScreen, backing: NSWindow.BackingStoreType(rawValue: 2)!, defer: false, screen: NSScreen.main)
+                newOverlay.isReleasedWhenClosed = false
+                newOverlay.level = .floating
+                newOverlay.animationBehavior = .none
+                newOverlay.alphaValue = 1
+                newOverlay.isOpaque = false
+                newOverlay.ignoresMouseEvents = true
+                newOverlay.makeKeyAndOrderFront(Any?.self)
+                clearMenuItem.isEnabled = true
+                newOverlay.backgroundColor = NSColor.init(red: 0, green: 0, blue: 0, alpha: CGFloat(overlayValue*0.01))
+                overlays.append(newOverlay)
+            }
+            
+            areOverlaysVisible = true
         }
         
-        // Reset all window settings to refresh the overlay window view
-        
-        overlayWindow.isReleasedWhenClosed = false
-        overlayWindow.level = .floating
-        overlayWindow.animationBehavior = .none
-        overlayWindow.alphaValue = 1
-        overlayWindow.isOpaque = false
-        overlayWindow.ignoresMouseEvents = true
-        overlayWindow.makeKeyAndOrderFront(Any?.self)
-        clearMenuItem.isEnabled = true
-        overlayWindow.backgroundColor = NSColor.init(red: 0, green: 0, blue: 0, alpha: CGFloat(overlayValue*0.01))
-        
-        isWindowVisible = true
+        // Test option is from an menu item with a tag of 0, set window to red and animate out if that has been selected
         
         if(overlayValue == 0){
-            
-            // Test option selected becuase the menu item tag is 0, set window to red
-            
-            overlayWindow.backgroundColor = NSColor.init(red: 1, green: 0, blue: 0, alpha: 0.5)
-            
-            // Animate out after a few seconds to confirm test successful, then remove overlay window view
-            
-            NSAnimationContext.runAnimationGroup({ (context) -> Void in
-                context.duration = 4.5
-                overlayWindow.animator().alphaValue = 0.1
-            }, completionHandler: {
-                    self.removeOverlay(sender: self.clearMenuItem)
-                self.isWindowVisible = false
-            })
+            for overlay in overlays {
+                overlay.backgroundColor = NSColor.init(red: 1, green: 0, blue: 0, alpha: 0.5)
+
+                // Animate out after a few seconds to confirm test successful, then remove overlay window view
+
+                NSAnimationContext.runAnimationGroup({ (context) -> Void in
+                    context.duration = 4.5
+                    overlay.animator().alphaValue = 0.1
+                }, completionHandler: {
+                        self.removeOverlay(sender: self.clearMenuItem)
+                    self.areOverlaysVisible = false
+                })
+            }
         }
         
-//        // Change statusbar icon to active to communicate "this is the reason your screen might look funky"
+//        // OPTIONAL: Change statusbar icon to active to communicate "this is the reason your screen might look funky"
 //
 //        let icon = NSImage(named: "active-icon")
 //        statusItem.button?.image = icon
+    }
+    
+    @IBAction func goToAbout(sender: NSMenuItem) {
+        
+        // About item selected, go to URL in user defined web browser
+        
+        if(sender.title == "About") {
+            if let url = URL(string: "https://github.com/tannerc/spf"), NSWorkspace.shared.open(url) {}
+        }
+    }
+    
+    @IBAction func quitClicked(sender: NSMenuItem) {
+        
+        // Quit via status bar menu
+        
+        NSApplication.shared.terminate(self)
     }
 }
