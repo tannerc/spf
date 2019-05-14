@@ -17,7 +17,11 @@ Just build the app in Xcode and open to run as you would any other app. You'll s
 
 Once a polarizing filter has been applied, you can clear it using the same status bar menu.
 
-## Or download the pre-compiled app right here: [Download now](https://github.com/tannerc/spf/releases/download/1.2/Spf.app.zip)
+## Just download the app
+
+Not interested in the source code? You can get Spf directly in the [Mac App Store](https://itunes.apple.com/us/app/spf-screen-polarizer/id1463398888?mt=12).
+
+Or you can download a pre-compiled version of the app directly from this repo: [Download pre-compiled](https://github.com/tannerc/spf/releases/download/1.2/Spf.app.zip)
 
 ## Why Spf?
 
