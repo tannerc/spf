@@ -79,7 +79,7 @@ class SpfMenuController: NSObject {
             
             for screen in NSScreen.screens {
                 let screenRect = screen.frame
-                let newOverlay = NSWindow.init(contentRect: screenRect, styleMask: .fullScreen, backing: NSWindow.BackingStoreType(rawValue: 2)!, defer: false, screen: NSScreen.main)
+                let newOverlay = NSWindow.init(contentRect: screenRect, styleMask: .fullSizeContentView, backing: NSWindow.BackingStoreType(rawValue: 2)!, defer: false, screen: NSScreen.main)
                 newOverlay.isReleasedWhenClosed = false
                 newOverlay.level = .floating
                 newOverlay.animationBehavior = .none
