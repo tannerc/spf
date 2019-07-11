@@ -12,7 +12,7 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     @IBOutlet weak var spfMenu: NSMenu!
-    let menuItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
+    let menuItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {        
         // Insert code here to initialize your application

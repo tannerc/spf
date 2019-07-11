@@ -59,7 +59,7 @@
                         <action selector="setOverlayWithSender:" target="l7L-FZ-3TZ" id="l0v-Gw-wNU"/>
                     </connections>
                 </menuItem>
-                <menuItem title="About" id="PfI-4j-YdZ">
+                <menuItem title="Learn more →" id="PfI-4j-YdZ">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="goToAboutWithSender:" target="l7L-FZ-3TZ" id="GPd-9Y-WSf"/>

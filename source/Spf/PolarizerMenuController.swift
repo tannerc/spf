@@ -123,7 +123,7 @@ class SpfMenuController: NSObject {
         
         // About item selected, go to URL in user defined web browser
         
-        if(sender.title == "About") {
+        if(sender.title == "Learn more →") {
             if let url = URL(string: "https://github.com/tannerc/spf"), NSWorkspace.shared.open(url) {}
         }
     }
