@@ -1,7 +1,7 @@
 # Spf 1.2
 A simple, open source Mac OS app for presenting on monitors or projectors that blowout highlights and details.
 
-![On/off again](https://github.com/tannerc/spf/blob/master/resources/spf-on-off.png)
+![On/off again](https://github.com/tannerc/spf/blob/master/resources/offandon.png)
 
 ## Screen polarization function (Spf)
 
@@ -21,7 +21,7 @@ Once a polarizing filter has been applied, you can clear it using the same statu
 
 Not interested in the source code? You can get Spf directly in the [Mac App Store](https://itunes.apple.com/us/app/spf-screen-polarizer/id1463398888?mt=12).
 
-Or you can download a pre-compiled version of the app directly from this repo: [Download pre-compiled](https://github.com/tannerc/spf/releases/download/1.2/Spf.app.zip)
+Or you can download a pre-compiled version of the app directly from this repo: [Download pre-compiled](https://github.com/tannerc/spf/releases/download/1.2.1/Spf.app.zip)
 
 ## Why Spf?
 
