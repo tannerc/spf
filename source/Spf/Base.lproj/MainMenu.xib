@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097.2"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -22,30 +22,6 @@
         </customObject>
         <menu autoenablesItems="NO" id="rTt-H4-6Bj">
             <items>
-                <menuItem title="5% opacity" tag="5" id="eHo-mj-JGW">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="setOverlayWithSender:" target="l7L-FZ-3TZ" id="YZZ-lB-jw0"/>
-                    </connections>
-                </menuItem>
-                <menuItem title="10% opacity" tag="10" id="T2w-ig-Syf">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="setOverlayWithSender:" target="l7L-FZ-3TZ" id="UKb-E3-AUQ"/>
-                    </connections>
-                </menuItem>
-                <menuItem title="25% opacity" tag="25" id="sFe-Iy-4cK">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="setOverlayWithSender:" target="l7L-FZ-3TZ" id="aGf-k9-ODh"/>
-                    </connections>
-                </menuItem>
-                <menuItem title="50% opacity" tag="50" id="kwA-RC-aYn">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="setOverlayWithSender:" target="l7L-FZ-3TZ" id="nuX-nV-R2s"/>
-                    </connections>
-                </menuItem>
                 <menuItem title="Clear" enabled="NO" id="mXr-Ps-Kl5">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
@@ -56,7 +32,7 @@
                 <menuItem title="Run test" id="oie-Xf-nCt">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="setOverlayWithSender:" target="l7L-FZ-3TZ" id="l0v-Gw-wNU"/>
+                        <action selector="testOverlayWithSender:" target="l7L-FZ-3TZ" id="gQb-xN-S4q"/>
                     </connections>
                 </menuItem>
                 <menuItem title="Learn more →" id="PfI-4j-YdZ">

@@ -14,6 +14,11 @@ class SpfMenuController: NSObject {
     var overlays: Array<NSWindow> = []
     let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
     var areOverlaysVisible = false
+    let statusSlider = NSSlider(value: 0,
+                                minValue: 0,
+                                maxValue: 100,
+                                target: self,
+                                action: #selector(sliderValueChanged(_:)))
     
     override func awakeFromNib() {
         
@@ -24,6 +29,18 @@ class SpfMenuController: NSObject {
         statusItem.button?.image = icon
         statusItem.menu = spfMenu
         clearMenuItem.isEnabled = false
+        
+        // Add slider control to our menu for adjusting shade level from 0 to 100
+        
+        let menuItem = NSMenuItem()
+        statusSlider.setFrameSize(NSSize(width: 180, height: 16))
+        statusSlider.minValue = 0.0
+        statusSlider.maxValue = 100.0
+        statusSlider.target = self
+        statusSlider.isContinuous = true
+        menuItem.title = "Slider 1"
+        menuItem.view = statusSlider
+        spfMenu.insertItem(menuItem, at: 0)
         
         // Add a listener for screen resolution (and other) changes and resize accordingly
         
@@ -40,37 +57,20 @@ class SpfMenuController: NSObject {
         }
     }
     
-    @IBAction func removeOverlay(sender: NSMenuItem) {
+    @IBAction func sliderValueChanged(_ sender: NSSlider) {
         
-        // Check if an overlay is visible and if so, remove it
+        // Slider has changed so let's update the overlays accordingly...
         
-        if(areOverlaysVisible){
-            for overlay in self.overlays {
-                overlay.close()
-            }
-            overlays.removeAll()
-            areOverlaysVisible = false
-            clearMenuItem.isEnabled = false
-            let icon = NSImage(named: "polar-icon")
-            statusItem.button?.image = icon
-        }
-    }
-    
-    @IBAction func  setOverlay(sender: NSMenuItem) {
-        
-        // Get the overlay value via menu item tag
-        
-        let overlayValue = Float(sender.tag)
+        let overlayValue = Float(statusSlider.intValue)
         
         if(areOverlaysVisible) {
             
-            // Overlays exist, just update them with the new settings (and, if appropriate, screen size)
+            // Overlays exist, just update them with the new settings
             
             for overlay in overlays {
-                overlay.setFrame(overlay.frame, display: true, animate: false)
+//                overlay.setFrame(overlay.frame, display: true, animate: false)
                 overlay.alphaValue = 1
                 overlay.makeKeyAndOrderFront(Any?.self)
-                clearMenuItem.isEnabled = true
                 overlay.backgroundColor = NSColor.init(red: 0, green: 0, blue: 0, alpha: CGFloat(overlayValue*0.01))
             }
         } else {
@@ -95,20 +95,51 @@ class SpfMenuController: NSObject {
             areOverlaysVisible = true
         }
         
+        if(statusSlider.intValue == 0) {
+            
+            // If slider value is zero, clear any overlays
+            
+            clearMenuItem.isEnabled = true
+            removeOverlay(sender: clearMenuItem)
+            return
+        }
+    }
+    
+    @IBAction func removeOverlay(sender: NSMenuItem) {
+        
+        // Check if an overlay is visible and if so, remove it
+        
+        if(areOverlaysVisible){
+            for overlay in self.overlays {
+                overlay.close()
+            }
+            overlays.removeAll()
+            areOverlaysVisible = false
+            clearMenuItem.isEnabled = false
+            let icon = NSImage(named: "polar-icon")
+            statusItem.button?.image = icon
+            self.statusSlider.intValue = 0
+        }
+    }
+    
+    @IBAction func  testOverlay(sender: NSMenuItem) {
+        areOverlaysVisible = true
+        
         // Test option is from an menu item with a tag of 0, set window to red and animate out if that has been selected
         
-        if(overlayValue == 0){
+        if(Float(sender.tag) == 0){
             for overlay in overlays {
                 overlay.backgroundColor = NSColor.init(red: 1, green: 0, blue: 0, alpha: 0.5)
 
-                // Animate out after a few seconds to confirm test successful, then remove overlay window view
+                // Animate out after 3 seconds to confirm test successful, then remove overlay window view
 
                 NSAnimationContext.runAnimationGroup({ (context) -> Void in
-                    context.duration = 4.5
+                    context.duration = 3
                     overlay.animator().alphaValue = 0.1
                 }, completionHandler: {
                         self.removeOverlay(sender: self.clearMenuItem)
                     self.areOverlaysVisible = false
+                    self.statusSlider.intValue = 0
                 })
             }
         }
